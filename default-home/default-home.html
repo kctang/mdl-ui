@@ -1,0 +1,40 @@
+<template name="mdlUiDefaultHome">
+    <main class="default-home mdl-layout__content">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Welcome to {{title}}</h2>
+                </div>
+                <div class="mdl-card__supporting-text mdl-card--expand">
+                    This application works!
+                </div>
+                {{#unless loggedIn}}
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Get Started</a>
+                    </div>
+                {{/unless}}
+            </div>
+            {{#if loggedIn}}
+                <div class="mdl-cell mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__supporting-text mdl-card--expand">
+                        <p>You are logged in as:</p>
+                        <img src="{{avatar}}" class="app-drawer-avatar">
+
+                        <div class="mdl-typography--body-2">{{name}}</div>
+                        <div class="mdl-typography--body-1-color-contrast">{{email}}</div>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            Tell me more
+                        </a>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__supporting-text mdl-card--expand">
+                        <p>TODO: Demo styles in card</p>
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+    </main>
+</template>
