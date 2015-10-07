@@ -1,7 +1,7 @@
 Package.describe({
     name: 'kctang:mdl-ui',
     version: '0.0.1',
-    summary: 'A set of consistent, reusable templates/layouts for Meteor based applications using material design lite.',
+    //summary: '',
     git: 'https://github.com/kctang/mdl-ui',
     documentation: 'README.md'
 });
