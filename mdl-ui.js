@@ -1,14 +1,16 @@
-MdlUi = {
-    configure: function (options) {
-        MdlUi._options.title = options.title;
-    }
-};
-
-MdlUi._options = {
+var defaultOptions = {
     title: 'Application',
     menuItems: [
         {label: 'About', action: '/about'}
     ]
+};
+
+MdlUi = {
+    options: {}
+};
+
+MdlUi.configure = function (_options) {
+    MdlUi.options = _.defaults(_options || {}, defaultOptions);
 };
 
 Meteor.startup(function () {

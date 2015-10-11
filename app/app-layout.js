@@ -1,11 +1,11 @@
 Template.mdlUiAppLayout.helpers({
     title() {
-        var o = MdlUi._options;
+        var o = MdlUi.options;
         return _.isFunction(o.title) ? o.title() : o.title;
     },
 
     menuItems() {
-        return MdlUi._options.menuItems;
+        return MdlUi.options.menuItems;
     },
 
     drawerTemplate() {

@@ -15,6 +15,6 @@ Template.mdlUiDefaultHome.helpers({
         return user && user.profile.email;
     },
     title() {
-        return MdlUi._options.title;
+        return MdlUi.options.title;
     }
 });
