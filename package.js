@@ -10,14 +10,21 @@ Package.onUse(function (api) {
     api.versionsFrom('1.2.0.1');
     api.use([
         'ecmascript',
-        'meteor-base'
+        'meteor-base',
+        'aldeed:simple-schema',
+        // http://stackoverflow.com/questions/32813802/meteor-exception-in-template-helper-referenceerror-match-is-not-defined
+        'check'
+
     ]);
     api.use([
         'templating'
     ], 'client');
 
     api.addFiles([
-        'mdl-ui.js',
+        'mdl-ui.js'
+    ]);
+
+    api.addFiles([
         'app/app-layout.css',
         'app/app-layout.html',
         'app/app-layout.js',
@@ -36,21 +43,24 @@ Package.onUse(function (api) {
         'default-settings/default-settings.css',
         'default-settings/default-settings.html',
         'default-settings/default-settings.js',
+
+        'fab/fab.css',
+        'fab/fab.html',
+        'fab/fab.js',
+
         'page-layout/page-layout.html',
         'page-layout/page-layout.js'
-
-
     ], 'client');
 
-/*
-    api.addAssets([
+    /*
+     api.addAssets([
 
-    ], 'client');
-*/
+     ], 'client');
+     */
 
     api.export([
         'MdlUi'
-    ], 'client');
+    ]);
 });
 
 Package.onTest(function (api) {
