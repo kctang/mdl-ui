@@ -13,8 +13,8 @@ Package.onUse(function (api) {
         'meteor-base',
         'aldeed:simple-schema',
         // http://stackoverflow.com/questions/32813802/meteor-exception-in-template-helper-referenceerror-match-is-not-defined
-        'check'
-
+        'check',
+        'stylus'
     ]);
     api.use([
         'templating'
@@ -51,6 +51,8 @@ Package.onUse(function (api) {
         'page-layout/page-layout.html',
         'page-layout/page-layout.js'
     ], 'client');
+
+    api.addFiles('mdl-ui.styl', 'client', {isImport: true});
 
     /*
      api.addAssets([
