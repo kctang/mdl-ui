@@ -25,6 +25,10 @@ Package.onUse(function (api) {
     ]);
 
     api.addFiles([
+        'mdl-ui-test.js'
+    ], 'client');
+
+    api.addFiles([
         'app/app-layout.css',
         'app/app-layout.html',
         'app/app-layout.js',
@@ -50,6 +54,21 @@ Package.onUse(function (api) {
 
         'page-layout/page-layout.html',
         'page-layout/page-layout.js'
+    ], 'client');
+
+    api.addFiles([
+        'form/form.html',
+        'form/form.js',
+        'form/form.styl',
+
+        'form/section/section.html',
+        'form/section/section.js',
+        'form/section/section.styl',
+        'form/text/text.html',
+        'form/text/text.js',
+        'form/textarea/textarea.html',
+        'form/textarea/textarea.js'
+
     ], 'client');
 
     api.addFiles('mdl-ui.styl', 'client', {isImport: true});

@@ -1,0 +1,48 @@
+<template name="mdlUiSection">
+    <div name="{{name}}" id="{{id}}" class="mdlSection mdl-grid mdl-grid--no-spacing {{class}} {{cell}}">
+        <div class="mdl-cell mdl-cell--12-col">
+            {{#if dynamicMode}}
+                <button id="{{id}}MdlSectionAdd" type="button"
+                        class="mdlSectionAdd mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">add</i>
+                </button>
+            {{/if}}
+            {{label}}
+        </div>
+        <div class="mdl-cell mdl-cell--12-col mdl-grid">
+            {{#unless dynamicMode}}
+                {{> UI.contentBlock}}
+            {{/unless}}
+            {{#if dynamicMode}}
+                {{#each sections}}
+                    <div class="mdl-cell mdl-cell--12-col mdl-grid mdl-grid--no-spacing {{sectionShadow}}">
+                        <div class="mdlSection--entry-header mdl-cell mdl-cell--12-col">
+                            <div class="mdlSection--entry-index-label mdl-typography--caption">{{indexLabel}}</div>
+                            <div class="mdl-layout-spacer"></div>
+                            {{#if removed}}
+                                <div class="mdlSectionMarked mdl-typography--caption">Marked for deletion</div>
+                                <button id="{{id}}MdlSectionUndo" type="button"
+                                        class="mdlSectionUndo mdl-button mdl-js-button mdl-button--icon">
+                                    <i class="material-icons">undo</i>
+                                </button>
+                            {{/if}}
+                            {{#unless removed}}
+                                <button id="{{id}}MdlSectionRemove" type="button"
+                                        class="mdlSectionRemove mdl-button mdl-js-button mdl-button--icon">
+                                    <i class="material-icons">remove</i>
+                                </button>
+                            {{/unless}}
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col mdl-grid mdlSection--overlay-wrapper">
+                            {{> UI.contentBlock .}}
+                            {{#if removed}}
+                                <div class="mdlSection--overlay"></div>
+                                <input xaction="remove-element" type="hidden" value="{{removeElementIndex}}"/>
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</template>
