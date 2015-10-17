@@ -18,7 +18,7 @@ Template.mdlUiForm.helpers({
     }
 });
 
-MdlUi.Form = function (schema, model) {
+MdlUi.Form = function (model) {
     'use strict';
     var _form = new ReactiveVar({
         data: {},
@@ -26,9 +26,11 @@ MdlUi.Form = function (schema, model) {
         visible: true
     });
     var _docId = '';
+    var schema = model.simpleSchema();
 
-    this.schema = schema;
+    // for public access
     this.model = model;
+    this.schema = schema;
 
     /**
      * Load data from model to form. If docId is not specified.

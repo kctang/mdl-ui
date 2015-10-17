@@ -37,6 +37,7 @@ Package.onUse(function (api) {
         'app/app-drawer.js',
         'app/app-drawer-public.html',
         'app/app-drawer-public.js',
+
         'default-about/default-about.css',
         'default-about/default-about.html',
         'default-help/default-help.css',
@@ -52,23 +53,28 @@ Package.onUse(function (api) {
         'fab/fab.html',
         'fab/fab.js',
 
-        'page-layout/page-layout.html',
-        'page-layout/page-layout.js'
-    ], 'client');
+        'form/checkbox/checkbox.html',
+        'form/checkbox/checkbox.js',
+        'form/checkbox/checkbox.styl',
+        'form/section/section.html',
+        'form/section/section.js',
+        'form/section/section.styl',
+        'form/select/select.html',
+        'form/select/select.js',
+        'form/select/select.styl',
+        'form/text/text.html',
+        'form/text/text.js',
+        'form/textarea/textarea.html',
+        'form/textarea/textarea.js',
 
-    api.addFiles([
         'form/form.html',
         'form/form.js',
         'form/form.styl',
 
-        'form/section/section.html',
-        'form/section/section.js',
-        'form/section/section.styl',
-        'form/text/text.html',
-        'form/text/text.js',
-        'form/textarea/textarea.html',
-        'form/textarea/textarea.js'
+        'head/head.html',
 
+        'page-layout/page-layout.html',
+        'page-layout/page-layout.js'
     ], 'client');
 
     api.addFiles('mdl-ui.styl', 'client', {isImport: true});
