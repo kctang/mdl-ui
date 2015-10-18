@@ -1,3 +1,5 @@
+'use strict';
+
 Template.mdlUiAppDrawer.helpers({
     avatar() {
         var user = Meteor.user();
@@ -14,10 +16,7 @@ Template.mdlUiAppDrawer.helpers({
 });
 
 Template.mdlUiAppDrawer.events({
-    'click button.logout': function (e) {
-        var $drawer = $(e.target).parent().parent().parent();
-        $drawer.removeClass('is-visible');
-
-        Router.go('/sign-out');
+    'click .mdl-navigation__link'(e, v) {
+        $(v.firstNode.parentNode).removeClass('is-visible');
     }
 });

@@ -70,13 +70,14 @@ Package.onUse(function (api) {
 
     // layouts
     api.addFiles([
-        'layouts/app/app-drawer.css',
         'layouts/app/app-drawer.html',
         'layouts/app/app-drawer.js',
+        'layouts/app/app-drawer.styl',
         'layouts/app/app-drawer-public.html',
         'layouts/app/app-drawer-public.js',
         'layouts/app/app-layout.html',
         'layouts/app/app-layout.js',
+        'layouts/app/app-layout.styl',
         'layouts/page/page-layout.html',
         'layouts/page/page-layout.js'
     ], 'client');
