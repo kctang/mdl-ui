@@ -13,11 +13,13 @@ Package.onUse(function (api) {
         'meteor-base',
         'aldeed:simple-schema',
         // http://stackoverflow.com/questions/32813802/meteor-exception-in-template-helper-referenceerror-match-is-not-defined
-        'check'
+        'check',
+        'momentjs:moment'
     ]);
     api.use([
         'templating',
-        'stylus'
+        'stylus',
+        'fermuch:pickadate'
     ], 'client');
 
     api.addFiles([
