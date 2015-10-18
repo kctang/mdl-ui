@@ -1,6 +1,6 @@
 Template.mdlUiPageLayout.helpers({
     title() {
-        return this.title || 'Untitled Page';
+        return this.title || MdlUi.options.title || 'Untitled Page';
     },
 
     menuItems() {
@@ -13,3 +13,4 @@ Template.mdlUiPageLayout.events({
         history.go(-1);
     }
 });
+

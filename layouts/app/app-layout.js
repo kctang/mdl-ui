@@ -1,3 +1,10 @@
+var defaultOptions = {
+    publicDrawer: 'mdlUiAppDrawerPublic',
+    drawer: 'mdlUiAppDrawer'
+};
+
+var options = _.clone(defaultOptions);
+
 Template.mdlUiAppLayout.helpers({
     title() {
         var o = MdlUi.options;
@@ -9,10 +16,13 @@ Template.mdlUiAppLayout.helpers({
     },
 
     drawerTemplate() {
+        // populate options with customization from MdlUi.options
+        _.extend(options, _.pick(MdlUi.options, _.keys(defaultOptions)));
+
         if(Meteor.user()) {
-            return 'mdlUiAppDrawer';
+            return options.drawer;
         } else {
-            return 'mdlUiAppDrawerPublic';
+            return options.publicDrawer;
         }
     }
 });

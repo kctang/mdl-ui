@@ -1,4 +1,4 @@
-Template.mdlUiDefaultHome.helpers({
+Template.mdlUiHomeDemo.helpers({
     loggedIn() {
         return Meteor.user() ? true : false;
     },
@@ -16,5 +16,11 @@ Template.mdlUiDefaultHome.helpers({
     },
     title() {
         return MdlUi.options.title;
+    }
+});
+
+Template.mdlUiHomeDemo.events({
+    'click .get-started'() {
+        alert('You got to do that...');
     }
 });

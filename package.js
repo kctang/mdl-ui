@@ -28,27 +28,21 @@ Package.onUse(function (api) {
         'mdl-ui-test.js'
     ], 'client');
 
+    // demos
     api.addFiles([
-        'app/app-layout.css',
-        'app/app-layout.html',
-        'app/app-layout.js',
-        'app/app-drawer.css',
-        'app/app-drawer.html',
-        'app/app-drawer.js',
-        'app/app-drawer-public.html',
-        'app/app-drawer-public.js',
+        'demos/about/about-demo.html',
+        'demos/about/about-demo.styl',
+        'demos/help/default-help.html',
+        'demos/help/help-demo.styl',
+        'demos/home/home-demo.html',
+        'demos/home/home-demo.js',
+        'demos/home/home-demo.styl',
+        'demos/settings/settings-demo.html',
+        'demos/settings/settings-demo.js',
+        'demos/settings/settings-demo.styl'
+    ], 'client');
 
-        'default-about/default-about.css',
-        'default-about/default-about.html',
-        'default-help/default-help.css',
-        'default-help/default-help.html',
-        'default-home/default-home.css',
-        'default-home/default-home.html',
-        'default-home/default-home.js',
-        'default-settings/default-settings.css',
-        'default-settings/default-settings.html',
-        'default-settings/default-settings.js',
-
+    api.addFiles([
         'fab/fab.css',
         'fab/fab.html',
         'fab/fab.js',
@@ -71,19 +65,23 @@ Package.onUse(function (api) {
         'form/form.js',
         'form/form.styl',
 
-        'head/head.html',
+        'head/head.html'
+    ], 'client');
 
-        'page-layout/page-layout.html',
-        'page-layout/page-layout.js'
+    // layouts
+    api.addFiles([
+        'layouts/app/app-drawer.css',
+        'layouts/app/app-drawer.html',
+        'layouts/app/app-drawer.js',
+        'layouts/app/app-drawer-public.html',
+        'layouts/app/app-drawer-public.js',
+        'layouts/app/app-layout.html',
+        'layouts/app/app-layout.js',
+        'layouts/page/page-layout.html',
+        'layouts/page/page-layout.js'
     ], 'client');
 
     api.addFiles('mdl-ui.styl', 'client', {isImport: true});
-
-    /*
-     api.addAssets([
-
-     ], 'client');
-     */
 
     api.export([
         'MdlUi'

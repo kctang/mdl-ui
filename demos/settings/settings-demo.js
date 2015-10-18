@@ -1,0 +1,3 @@
+Template.mdlUiSettingsDemo.helpers({
+
+});

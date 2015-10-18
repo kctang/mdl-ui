@@ -101,7 +101,7 @@
 var defaultOptions = {
     title: 'Application',
     menuItems: [
-        {label: 'About', action: '/about'}
+        //{label: 'About', action: '/about'}
     ]
 };
 
