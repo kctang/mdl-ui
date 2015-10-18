@@ -11,15 +11,15 @@ Package.onUse(function (api) {
     api.use([
         'ecmascript',
         'meteor-base',
-        'aldeed:simple-schema',
         // http://stackoverflow.com/questions/32813802/meteor-exception-in-template-helper-referenceerror-match-is-not-defined
         'check',
-        'momentjs:moment'
+        'aldeed:simple-schema@1.3.3',
+        'momentjs:moment@2.10.6'
     ]);
     api.use([
         'templating',
         'stylus',
-        'fermuch:pickadate'
+        'fermuch:pickadate@1.0.0'
     ], 'client');
 
     api.addFiles([
