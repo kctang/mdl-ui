@@ -16,7 +16,13 @@
                             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                                 for="app-layout--menu">
                                 {{#each menuItems}}
-                                    <li class="mdl-menu__item">{{label}}</li>
+                                    <li class="mdl-menu__item">
+                                        {{#if icon}}
+                                            <!--TODO: external style-->
+                                            <i class="material-icons" style="vertical-align: middle">{{icon}}</i>
+                                        {{/if}}
+                                        {{label}}
+                                    </li>
                                 {{/each}}
                             </ul>
                         </nav>
