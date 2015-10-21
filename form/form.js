@@ -13,8 +13,11 @@ Template.mdlUiForm.events({
 });
 
 Template.mdlUiForm.helpers({
-    class: function () {
+    'class': function () {
         return this.class || 'mdl-grid mdl-color--white';
+    },
+    defaultActions: function() {
+        return this.defaultActions === undefined ? true : this.defaultActions;
     }
 });
 

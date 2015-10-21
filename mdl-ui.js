@@ -203,17 +203,21 @@ MdlUi.Util = {
     },
 
     resolveValue(context) {
-        var form = MdlUi.Util.resolveData(context, 'form');
-        var resolvedName = context.name;
+        if(context.value!==undefined) {
+            return context.value;
+        } else {
+            var form = MdlUi.Util.resolveData(context, 'form');
+            var resolvedName = context.name;
 
-        if (resolvedName.indexOf('.$') !== -1) {
-            if (context.indexes === undefined) {
-                throw new Meteor.Error('Indexes required to resolve [' + resolvedName + '] not available');
+            if (resolvedName.indexOf('.$') !== -1) {
+                if (context.indexes === undefined) {
+                    throw new Meteor.Error('Indexes required to resolve [' + resolvedName + '] not available');
+                }
+                resolvedName = MdlUi.Util.toIndex(resolvedName, context.indexes);
             }
-            resolvedName = MdlUi.Util.toIndex(resolvedName, context.indexes);
-        }
 
-        return MdlUi.Util.getValue(form.data(), resolvedName);
+            return MdlUi.Util.getValue(form.data(), resolvedName);
+        }
     },
 
     resolveErrorMessage(context) {

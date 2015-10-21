@@ -52,6 +52,8 @@ Package.onUse(function (api) {
         'form/checkbox/checkbox.html',
         'form/checkbox/checkbox.js',
         'form/checkbox/checkbox.styl',
+        'form/hidden/hidden.html',
+        'form/hidden/hidden.js',
         'form/section/section.html',
         'form/section/section.js',
         'form/section/section.styl',
