@@ -32,18 +32,18 @@ Package.onUse(function (api) {
         'head/head.styl'
     ], 'client');
 
-    // demos
+    // layouts
     api.addFiles([
-        'demos/about/about-demo.html',
-        'demos/about/about-demo.styl',
-        'demos/help/default-help.html',
-        'demos/help/help-demo.styl',
-        'demos/home/home-demo.html',
-        'demos/home/home-demo.js',
-        'demos/home/home-demo.styl',
-        'demos/settings/settings-demo.html',
-        'demos/settings/settings-demo.js',
-        'demos/settings/settings-demo.styl'
+        'layouts/app/app-drawer.html',
+        'layouts/app/app-drawer.js',
+        'layouts/app/app-drawer.styl',
+        'layouts/app/app-drawer-public.html',
+        'layouts/app/app-drawer-public.js',
+        'layouts/app/app-layout.html',
+        'layouts/app/app-layout.js',
+        'layouts/app/app-layout.styl',
+        'layouts/page/page-layout.html',
+        'layouts/page/page-layout.js'
     ], 'client');
 
     // forms, fields & UI components
@@ -73,18 +73,20 @@ Package.onUse(function (api) {
         'form/form.styl'
     ], 'client');
 
-    // layouts
+    // demos
     api.addFiles([
-        'layouts/app/app-drawer.html',
-        'layouts/app/app-drawer.js',
-        'layouts/app/app-drawer.styl',
-        'layouts/app/app-drawer-public.html',
-        'layouts/app/app-drawer-public.js',
-        'layouts/app/app-layout.html',
-        'layouts/app/app-layout.js',
-        'layouts/app/app-layout.styl',
-        'layouts/page/page-layout.html',
-        'layouts/page/page-layout.js'
+        'demos/about/about-demo.html',
+        'demos/about/about-demo.styl',
+        'demos/help/default-help.html',
+        'demos/help/help-demo.styl',
+        'demos/home/home-demo.html',
+        'demos/home/home-demo.js',
+        'demos/home/home-demo.styl',
+        'demos/settings/settings-demo.html',
+        'demos/settings/settings-demo.js',
+        'demos/settings/settings-demo.styl',
+        'demos/typography-demo.html',
+        'demos/typography-demo.js'
     ], 'client');
 
     api.addFiles('mdl-ui.styl', 'client', {isImport: true});
