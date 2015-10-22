@@ -42,12 +42,15 @@ var typographies = [
 Template.mdlUiTypographyDemo.onCreated(function () {
     Session.set('includes', '');
     Session.set('excludes', 'display');
+    Session.set('extraClasses', '');
 });
 
 Template.mdlUiTypographyDemo.events({
     'keydown #includes': _.throttle((e)=> Session.set('includes', $(e.target).val()), 500),
 
-    'keydown #excludes': _.throttle((e)=> Session.set('excludes', $(e.target).val()), 500)
+    'keydown #excludes': _.throttle((e)=> Session.set('excludes', $(e.target).val()), 500),
+
+    'keydown #extraClasses': _.throttle((e)=> Session.set('extraClasses', $(e.target).val()), 500)
 });
 
 Template.mdlUiTypographyDemo.helpers({
@@ -56,6 +59,10 @@ Template.mdlUiTypographyDemo.helpers({
     },
     excludes() {
         return Session.get('excludes');
+    },
+
+    extraClasses() {
+        return Session.get('extraClasses');
     },
 
     typographies() {
