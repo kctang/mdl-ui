@@ -27,7 +27,9 @@ Package.onUse(function (api) {
     ]);
 
     api.addFiles([
-        'mdl-ui-test.js'
+        'mdl-ui-test.js',
+        'head/head.html',
+        'head/head.styl'
     ], 'client');
 
     // demos
@@ -44,6 +46,7 @@ Package.onUse(function (api) {
         'demos/settings/settings-demo.styl'
     ], 'client');
 
+    // forms, fields & UI components
     api.addFiles([
         'fab/fab.css',
         'fab/fab.html',
@@ -67,9 +70,7 @@ Package.onUse(function (api) {
 
         'form/form.html',
         'form/form.js',
-        'form/form.styl',
-
-        'head/head.html'
+        'form/form.styl'
     ], 'client');
 
     // layouts
@@ -87,6 +88,69 @@ Package.onUse(function (api) {
     ], 'client');
 
     api.addFiles('mdl-ui.styl', 'client', {isImport: true});
+
+    // assets
+    api.addAssets([
+        'material-icons/material-icons.css',
+        'material-icons/MaterialIcons-Regular.woff2',
+        'roboto/roboto.css',
+        'roboto/Roboto-Black-cyrillic.woff2',
+        'roboto/Roboto-Black-cyrillic-ext.woff2',
+        'roboto/Roboto-Black-greek.woff2',
+        'roboto/Roboto-Black-greek-ext.woff2',
+        'roboto/Roboto-Black-latin.woff2',
+        'roboto/Roboto-Black-latin-ext.woff2',
+        'roboto/Roboto-Black-vietnamese.woff2',
+        'roboto/Roboto-Bold-cyrillic.woff2',
+        'roboto/Roboto-Bold-cyrillic-ext.woff2',
+        'roboto/Roboto-Bold-greek.woff2',
+        'roboto/Roboto-Bold-greek-ext.woff2',
+        'roboto/Roboto-Bold-latin.woff2',
+        'roboto/Roboto-Bold-latin-ext.woff2',
+        'roboto/Roboto-Bold-vietnamese.woff2',
+        'roboto/Roboto-BoldItalic-cyrillic.woff2',
+        'roboto/Roboto-BoldItalic-cyrillic-ext.woff2',
+        'roboto/Roboto-BoldItalic-greek.woff2',
+        'roboto/Roboto-BoldItalic-greek-ext.woff2',
+        'roboto/Roboto-BoldItalic-latin.woff2',
+        'roboto/Roboto-BoldItalic-latin-ext.woff2',
+        'roboto/Roboto-BoldItalic-vietnamese.woff2',
+        'roboto/Roboto-Italic-cyrillic.woff2',
+        'roboto/Roboto-Italic-cyrillic-ext.woff2',
+        'roboto/Roboto-Italic-greek.woff2',
+        'roboto/Roboto-Italic-greek-ext.woff2',
+        'roboto/Roboto-Italic-latin.woff2',
+        'roboto/Roboto-Italic-latin-ext.woff2',
+        'roboto/Roboto-Italic-vietnamese.woff2',
+        'roboto/Roboto-Light-cyrillic.woff2',
+        'roboto/Roboto-Light-cyrillic-ext.woff2',
+        'roboto/Roboto-Light-greek.woff2',
+        'roboto/Roboto-Light-greek-ext.woff2',
+        'roboto/Roboto-Light-latin.woff2',
+        'roboto/Roboto-Light-latin-ext.woff2',
+        'roboto/Roboto-Light-vietnamese.woff2',
+        'roboto/Roboto-Medium-cyrillic.woff2',
+        'roboto/Roboto-Medium-cyrillic-ext.woff2',
+        'roboto/Roboto-Medium-greek.woff2',
+        'roboto/Roboto-Medium-greek-ext.woff2',
+        'roboto/Roboto-Medium-latin.woff2',
+        'roboto/Roboto-Medium-latin-ext.woff2',
+        'roboto/Roboto-Medium-vietnamese.woff2',
+        'roboto/Roboto-Regular-cyrillic.woff2',
+        'roboto/Roboto-Regular-cyrillic-ext.woff2',
+        'roboto/Roboto-Regular-greek.woff2',
+        'roboto/Roboto-Regular-greek-ext.woff2',
+        'roboto/Roboto-Regular-latin.woff2',
+        'roboto/Roboto-Regular-latin-ext.woff2',
+        'roboto/Roboto-Regular-vietnamese.woff2',
+        'roboto/Roboto-Thin-cyrillic.woff2',
+        'roboto/Roboto-Thin-cyrillic-ext.woff2',
+        'roboto/Roboto-Thin-greek.woff2',
+        'roboto/Roboto-Thin-greek-ext.woff2',
+        'roboto/Roboto-Thin-latin.woff2',
+        'roboto/Roboto-Thin-latin-ext.woff2',
+        'roboto/Roboto-Thin-vietnamese.woff2'
+    ], 'client');
 
     api.export([
         'MdlUi'
