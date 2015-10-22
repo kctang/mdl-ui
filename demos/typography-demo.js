@@ -45,9 +45,9 @@ Template.mdlUiTypographyDemo.onCreated(function () {
 });
 
 Template.mdlUiTypographyDemo.events({
-    'keydown #includes': _.throttle((e)=> Session.set('includes', $(e.target).val()), 300),
+    'keydown #includes': _.throttle((e)=> Session.set('includes', $(e.target).val()), 500),
 
-    'keydown #excludes': _.throttle((e)=> Session.set('excludes', $(e.target).val()), 300)
+    'keydown #excludes': _.throttle((e)=> Session.set('excludes', $(e.target).val()), 500)
 });
 
 Template.mdlUiTypographyDemo.helpers({
@@ -59,11 +59,24 @@ Template.mdlUiTypographyDemo.helpers({
     },
 
     typographies() {
-        var filtered = _.filter(typographies, function (t) {
-            var includes = Session.get('includes');
-            var excludes = Session.get('excludes');
+        var includes = Session.get('includes');
+        var excludes = Session.get('excludes');
 
-            return t.indexOf(includes) !== -1 && (excludes === '' || t.indexOf(excludes) === -1);
+        var filtered = _.filter(typographies, function (t) {
+            var valid = true;
+
+            _.each(includes.split(','), function (includeToken) {
+                // TODO: minor bug - comma does not work with include. help fix this?
+                valid = valid && t.indexOf(includeToken) !== -1;
+            });
+
+            _.each(excludes.split(','), function (excludeToken) {
+                if (excludeToken !== '') {
+                    valid = valid && t.indexOf(excludeToken) === -1;
+                }
+            });
+
+            return valid;
         });
 
         return _.map(filtered, (typography)=> `mdl-typography--${typography}`);
