@@ -77,7 +77,7 @@ Package.onUse(function (api) {
     api.addFiles([
         'demos/about/about-demo.html',
         'demos/about/about-demo.styl',
-        'demos/help/default-help.html',
+        'demos/help/help-demo.html',
         'demos/help/help-demo.styl',
         'demos/home/home-demo.html',
         'demos/home/home-demo.js',

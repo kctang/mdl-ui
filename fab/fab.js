@@ -1,3 +1,4 @@
+'use strict';
 
 Template.mdlUiFab.events({
     'click button': function (e, view) {
@@ -9,5 +10,11 @@ Template.mdlUiFab.events({
             // from Meteor template event: e.originalEvent.detail will return parameters passed to this template
             detail: detail
         }));
+    }
+});
+
+Template.mdlUiFab.helpers({
+    icon() {
+        return this.icon || 'add';
     }
 });
