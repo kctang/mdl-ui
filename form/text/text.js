@@ -1,9 +1,17 @@
+/**
+ * Determine the data type based on schema. schema cannot be resolved, then returns empty string
+ * @param context
+ * @returns {*}
+ */
 function getSchemaType(context) {
-    if (!context.schemaType) {
-        var prop = MdlUi.Util.resolveData(context, 'form').schema.schema(context.name);
-        context.schemaType = prop.type;
+    var form = MdlUi.Util.resolveData(context, 'form');
+
+    if (form) {
+        var prop = form.schema.schema(context.name);
+        return prop.type;
     }
-    return context.schemaType;
+
+    return '';
 }
 
 Template.mdlUiText.helpers({
@@ -21,7 +29,7 @@ Template.mdlUiText.helpers({
         return MdlUi.Util.resolveLabel(this);
     },
     value: function () {
-        if(getSchemaType(this) === Date) {
+        if (getSchemaType(this) === Date) {
             return moment(MdlUi.Util.resolveValue(this)).format('ll');
         } else {
             return MdlUi.Util.resolveValue(this);
@@ -36,8 +44,12 @@ Template.mdlUiText.helpers({
     type: function () {
         if (this.type) {
             return this.type;
-        } else {
-            var prop = MdlUi.Util.resolveData(this, 'form').schema.schema(this.name);
+        }
+
+        var form = MdlUi.Util.resolveData(this, 'form');
+        if (form) {
+            var prop = form.schema.schema(this.name);
+
             if (prop) {
                 switch (prop.type) {
                     case Number:
@@ -45,24 +57,36 @@ Template.mdlUiText.helpers({
                     default:
                         return 'text';
                 }
-            } else {
-                return 'text';
             }
         }
+
+        return 'text';
     },
     extraInputClass() {
-        var prop = MdlUi.Util.resolveData(this, 'form').schema.schema(this.name);
-        if(prop && prop.type === Date) {
-            return 'datepicker';
-        } else {
-            return '';
+        var form = MdlUi.Util.resolveData(this, 'form');
+
+        if (form) {
+            var prop = form.schema.schema(this.name);
+            if (prop && prop.type === Date) {
+                return 'datepicker';
+            }
         }
+
+        return '';
     }
 });
 
 Template.mdlUiText.onRendered(function () {
-    var prop = MdlUi.Util.resolveData(this.data, 'form').schema.schema(this.data.name);
-    if(prop && prop.type === Date) {
-        this.$('.datepicker').pickadate();
+    if(this.data === null || this.data.name===undefined) {
+        throw new Error('Required parameter not found [name]');
+    }
+
+    var form = MdlUi.Util.resolveData(this.data, 'form');
+
+    if (form) {
+        var prop = form.schema.schema(this.data.name);
+        if (prop && prop.type === Date) {
+            this.$('.datepicker').pickadate();
+        }
     }
 });

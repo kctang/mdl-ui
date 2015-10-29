@@ -23,6 +23,7 @@ Package.onUse(function (api) {
     ], 'client');
 
     api.addFiles([
+        'deep-extend.js',
         'mdl-ui.js'
     ]);
 
