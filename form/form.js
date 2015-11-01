@@ -68,7 +68,7 @@ MdlUi.Form = function (model) {
         var $unset = {};
 
         // --- parse DOM form
-        doc = parseDomForm(domForm);
+        doc = MdlUi.Util.parseDomForm(domForm);
 
         // --- extract $unset from doc
         if(doc['$unset']) {
@@ -121,74 +121,7 @@ MdlUi.Form = function (model) {
 
         return valid;
 
-        function parseDomForm(form) {
-            var doc = {};
 
-            // input[type=text]
-            // input[type=number]
-            // input[type=hidden]
-            // textarea
-            _.each(form.querySelectorAll(
-                'input[type=text]:not([disabled]), ' +
-                'input[type=number]:not([disabled]), ' +
-                'textarea:not([disabled]),' +
-                'input[type=hidden]'
-            ), function (input) {
-                // fields with xaction is special, do not process as normal values
-                if(!input.hasAttribute('xaction')) {
-                    MdlUi.Util.setValue(doc, input.name, input.value);
-                }
-            });
-
-            // checkbox
-            _.each(form.querySelectorAll('input[type=checkbox]'), function (input) {
-                MdlUi.Util.setValue(doc, input.name, input.checked);
-            });
-
-            // select
-            _.each(form.querySelectorAll('select'), function (select) {
-                var value = undefined;
-                _.each(select.selectedOptions, function (selectedOption) {
-                    if (_.isUndefined(value)) {
-                        // add as simple value
-                        value = selectedOption.value;
-                    } else if (_.isArray(value)) {
-                        // push value to existing array
-                        value.push(selectedOption.value);
-                    } else {
-                        // should be string, create array and add it
-                        value = [value];
-                    }
-                });
-
-                if (value) {
-                    MdlUi.Util.setValue(doc, select.name, value);
-                }
-            });
-
-            // xaction=remove-element
-            _.each(form.querySelectorAll('input[xaction=remove-element]'), function (input) {
-
-                // --- make sure parentField extraction is correct
-                var parentField = input.value.substring(0, input.value.lastIndexOf('.'));
-                if(MdlUi.Util.getValue(doc, parentField) === undefined) {
-                    console.error('Unexpected value being deleted [' + input.value + ']');
-                    debugger;
-                }
-
-                // --- delete value
-                MdlUi.Util.deleteValue(doc, input.value);
-
-                // --- mark parent field to be $unset if its empty
-                if(MdlUi.Util.getValue(doc, parentField) === undefined) {
-                    // parentField should be removed from document (mongo)
-                    doc['$unset'] = doc['$unset'] || {};
-                    doc['$unset'][parentField] = '';
-                }
-            });
-
-            return doc;
-        }
     };
 
     this.visible = function (visible) {
