@@ -125,7 +125,6 @@ MdlUi.Util = {
         var form = MdlUi.Util.resolveData(context, 'form');
         if (form) {
             var resolvedName = context.name;
-
             if (resolvedName.indexOf('.$') !== -1) {
                 if (context.indexes === undefined) {
                     throw new Meteor.Error('Indexes required to resolve [' + resolvedName + '] not available');
@@ -135,6 +134,20 @@ MdlUi.Util = {
 
             return MdlUi.Util.getValue(form.data(), resolvedName);
         }
+
+      // form2 support
+      var form2 = MdlUi.Util.resolveData(context, 'form2');
+      if(form2) {
+        var resolvedName = context.name;
+        if (resolvedName.indexOf('.$') !== -1) {
+          if (context.indexes === undefined) {
+            throw new Meteor.Error('Indexes required to resolve [' + resolvedName + '] not available');
+          }
+          resolvedName = MdlUi.Util.toIndex(resolvedName, context.indexes);
+        }
+
+        return MdlUi.Util.getValue(form2.doc(), resolvedName);
+      }
 
         return '';
     },

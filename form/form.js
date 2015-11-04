@@ -178,6 +178,10 @@ MdlUi.Form = function (model) {
         return this;
     }
 
+  /**
+   * @param data
+   * @deprecated use MdlUiForm2
+   */
     function extraClean(data) {
         _.each(schema.objectKeys(), function (key) {
             var type = schema.getDefinition(key).type;
