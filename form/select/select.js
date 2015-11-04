@@ -4,7 +4,7 @@ Template.mdlUiSelect.helpers({
         return MdlUi.Util.resolveClass(this, 'mdl-textfield--floating-label');
     },
     id: function () {
-        return MdlUi.Util.resolveId(this, 'MdlTextarea');
+        return MdlUi.Util.resolveId(this, 'mdl-ui-select');
     },
     name: function () {
         return MdlUi.Util.resolveName(this);
@@ -24,7 +24,17 @@ Template.mdlUiSelect.helpers({
         // config
         var self = this;
         var form = MdlUi.Util.resolveData(self, 'form');
-        var schemaDefinition = form.schema.getDefinition(self.name);
+
+        var schemaDefinition;
+        if(form) {
+          schemaDefinition = form.schema.getDefinition(self.name);
+        } else {
+          var form2 = MdlUi.Util.resolveData(self, 'form2');
+          if(form2) {
+            schemaDefinition = form2.formHandler().schema.getDefinition(self.name);
+          }
+        }
+
         var mdlDefinition = schemaDefinition.mdlUi;
 
         /**

@@ -107,7 +107,7 @@ MdlUi.Util = {
             return form.schema.label(name) || '{!schema}' + name;
         }
 
-        return name;
+        return MdlUi.Util.toTitleCase(name);
     },
 
     /**
@@ -316,6 +316,9 @@ MdlUi.Util = {
 
     if (value) {
       MdlUi.Util.setValue(doc, select.name, value);
+    } else if(value==='') {
+      doc['$unset'] = doc['$unset'] || {};
+      doc['$unset'][select.name] = '';
     }
   });
 
@@ -496,5 +499,12 @@ MdlUi.Util = {
             });
         }
 
-    }
+    },
+
+  // ---
+  // http://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript
+  toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+
 };

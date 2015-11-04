@@ -19,10 +19,26 @@ Template.mdlUiForm2.events({
   'submit form'(event, template) {
     event.preventDefault();
 
+    var $unset = {};
     var handler = this.form2.formHandler();
     var doc = MdlUi.Util.parseDomForm(event.target);
 
-    var errors = handler.validate.call(this, doc);
+    var errors;
+    if(handler.validate) {
+      // use custom validation
+      // TODO: not used
+      errors = handler.validate.call(this, doc, $unset);
+    } else {
+      // --- extract $unset from doc
+      if(doc['$unset']) {
+        $unset = doc['$unset'];
+        delete doc['$unset'];
+      }
+
+      handler.beforeValidate && handler.beforeValidate.call(this, doc);
+      errors = this.form2.validate(doc);
+    }
+
     this.form2.errors(errors);
 
     if(_.size(errors)>0) {
@@ -31,7 +47,12 @@ Template.mdlUiForm2.events({
       return;
     }
 
-    handler.save && handler.save.call(this, doc);
+    if(handler.save) {
+      handler.save.call(this, {
+        $set: doc,
+        $unset: $unset
+      });
+    }
   }
 });
 
@@ -71,17 +92,18 @@ var MdlUiForm2 = class MdlUiForm2 {
   /**
    *
    * @param doc
-   * @param options schema, namedContext, omit
+   * @param options omit
    * @returns {{}}
    */
-  static validate(doc, options) {
+  validate(doc, options = {}) {
     var errors = {};
-    var schema = options.schema;
+    var schema = this.formHandler().schema;
 
+    // https://github.com/aldeed/meteor-simple-schema
     schema.clean(doc);
     extraClean(schema, doc);
 
-    var validationContext = schema.namedContext(options.namedContext);
+    var validationContext = schema.namedContext('form2');
     validationContext.resetValidation();
     if (!validationContext.validate(doc)) {
       // convert array of errors from simple schema into a map (easy to render)
