@@ -115,9 +115,10 @@ MdlUi.Util = {
      *
      * - this.value
      * - resolve value from form
+     * - resolve value from form2
      * - returns empty string
      */
-        resolveValue(context) {
+    resolveValue(context) {
         if (context.value !== undefined) {
             return context.value;
         }
@@ -163,6 +164,19 @@ MdlUi.Util = {
             if (_.isObject(error) && _.has(error, 'message')) {
                 return error.message;
             }
+        }
+
+        var form2 = MdlUi.Util.resolveData(context, 'form2');
+        if(form2) {
+          debugger;
+          var name = context.name;
+          var indexes = context.indexes;
+          var indexedName = MdlUi.Util.toIndex(name, indexes);
+          var error = form2.errors()[indexedName];
+
+          if (_.isObject(error) && _.has(error, 'message')) {
+            return error.message;
+          }
         }
 
         return '';
