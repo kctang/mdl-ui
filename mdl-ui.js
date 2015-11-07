@@ -328,11 +328,8 @@ MdlUi.Util = {
       }
     });
 
-    if (value) {
+    if (value || value==='') {
       MdlUi.Util.setValue(doc, select.name, value);
-    } else if(value==='') {
-      doc['$unset'] = doc['$unset'] || {};
-      doc['$unset'][select.name] = '';
     }
   });
 

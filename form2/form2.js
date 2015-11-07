@@ -167,5 +167,6 @@ class MdlUiForm2Plugin {
   }
 }
 
-MdlUi.addPlugin(new MdlUiForm2Plugin());
+// TODO - temp remove this plugin to let current form work
+//MdlUi.addPlugin(new MdlUiForm2Plugin());
 MdlUi.MdlUiForm2 = MdlUiForm2;
