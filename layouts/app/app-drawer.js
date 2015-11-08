@@ -17,6 +17,8 @@ Template.mdlUiAppDrawer.helpers({
 
 Template.mdlUiAppDrawer.events({
     'click .mdl-navigation__link'(e, v) {
-        $(v.firstNode.parentNode).removeClass('is-visible');
+      var $drawer = $(v.firstNode.parentNode);
+      $drawer.removeClass('is-visible');
+      $drawer.parent().find('.mdl-layout__obfuscator').removeClass('is-visible');
     }
 });
