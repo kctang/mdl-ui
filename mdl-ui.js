@@ -168,7 +168,6 @@ MdlUi.Util = {
 
         var form2 = MdlUi.Util.resolveData(context, 'form2');
         if(form2) {
-          debugger;
           var name = context.name;
           var indexes = context.indexes;
           var indexedName = MdlUi.Util.toIndex(name, indexes);
@@ -211,15 +210,28 @@ MdlUi.Util = {
     },
 
     hasError(context) {
+      var indexedName;
+      var error;
+
         var form = MdlUi.Util.resolveData(context, 'form');
         if (form) {
-            var indexedName = MdlUi.Util.toIndex(context.name, context.indexes);
-            var error = form.errors()[indexedName];
+          indexedName = MdlUi.Util.toIndex(context.name, context.indexes);
+          error = form.errors()[indexedName];
 
             return _.isObject(error) && _.has(error, 'type');
-        } else {
-            return false;
         }
+
+      var form2 = MdlUi.Util.resolveData(context, 'form2');
+      if(form2) {
+        var name = context.name;
+        var indexes = context.indexes;
+        indexedName = MdlUi.Util.toIndex(name, indexes);
+        error = form2.errors()[indexedName];
+
+        return _.isObject(error) && _.has(error, 'type');
+      }
+
+      return false;
     },
 
     resolveData(context, name) {
