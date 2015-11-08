@@ -17,7 +17,7 @@ function getSchemaType(context) {
 Template.mdlUiText.helpers({
     cell: MdlUi.Util.resolveCell,
     'class': function () {
-        return MdlUi.Util.resolveClass(this, 'mdl-textfield--floating-label');
+        return MdlUi.Util.resolveClass(this, 'mdl-textfield--floating-label mdl-cell mdl-cell--top');
     },
     id: function () {
         return MdlUi.Util.resolveId(this, 'MdlUiText');
