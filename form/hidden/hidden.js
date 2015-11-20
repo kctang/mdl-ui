@@ -1,12 +1,11 @@
 Template.mdlUiHidden.helpers({
-    // TODO: test indexes attribute in template. needed?
     id: function () {
-        return MdlUi.Util.resolveId(this, 'MdlUiHidden');
+        return MdlUi.Util2.resolveId(this, 'mdl-ui-hidden');
     },
     name: function() {
-        return MdlUi.Util.resolveName(this);
+        return MdlUi.Util2.resolveName(this);
     },
     value: function () {
-        return MdlUi.Util.resolveValue(this);
+        return MdlUi.Util2.resolveValue(this);
     }
 });

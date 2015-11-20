@@ -72,10 +72,8 @@ Package.onUse(function (api) {
 
         'form/form.html',
         'form/form.js',
-        'form/form.styl',
+        'form/form.styl'
 
-        'form2/form2.html',
-        'form2/form2.js'
     ], 'client');
 
     // demos

@@ -45,10 +45,6 @@ MdlUi.init = function () {
             }
         });
 
-        Template.registerHelper('form', function () {
-            return MdlUi.Util.resolveDataOrThrowError(this, 'form');
-        });
-
     });
 
     // init plugins
@@ -182,7 +178,6 @@ MdlUi.Util = {
     },
 
     resolveCell(cell) {
-
         // if parameter not specified, get from this.cell
         if (arguments.length === 0) {
             if (this['SET_VALUE'] === 2) {
@@ -528,6 +523,178 @@ MdlUi.Util = {
   // http://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript
   toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+
+};
+
+MdlUi.Util2 = {
+  resolveName(context) {
+    return FormHandler.toIndex(context.name, context.indexes);
+  },
+
+  resolveClass(context, defaultClasses = '') {
+    var classes = context['class'] || defaultClasses;
+
+    if (MdlUi.Util2.hasError(context)) {
+      classes += ' is-invalid';
+    }
+
+    return classes;
+  },
+
+  resolveId(context, prefix) {
+    var id = context.id || MdlUi.Util2.resolveName(context);
+    return `${prefix}-${id}`;
+  },
+
+  resolveLabel(context) {
+    // --- 1: return label as specified by template parameter
+    var label = context.label;
+    if (label) {
+      return label;
+    }
+
+    var name = context.name;
+    if (!name) {
+      throw new Error('Either name or label must be specified to resolve label');
+    }
+
+    // ---- 2: return label as defined in schema if form and schema can be resolved
+    var form = MdlUi.Util2.resolveData(context, 'form');
+    if (form && form.schema()) {
+      return form.schema().label(name) || `[${name}] not defined in form schema`;
+    }
+
+    // --- 3: return label as title case of template's name parameter
+    return MdlUi.Util2._toTitleCase(name);
+  },
+
+  resolveValue(context) {
+    // --- 1: return value as specified by template parameter
+    var value = context.value;
+    if (value !== undefined) {
+      return value;
+    }
+
+    // --- 2: return value from resolved form after resolving indexes in name
+    var form = MdlUi.Util2.resolveData(context, 'form');
+    if (form) {
+      return form.value(context.name, context.indexes);
+    }
+
+    // --- 3: return empty string
+    return '';
+  },
+
+  resolveErrorMessage(context) {
+    var form = MdlUi.Util2.resolveData(context, 'form');
+    if(form) {
+      form.errorMessage(name, context.indexes);
+    }
+  },
+
+  hasError(context) {
+    // TODO: replace with resolveErrorMessage in Form class?
+    var hasError = false;
+    var indexedName;
+    var error;
+
+    var form = MdlUi.Util2.resolveData(context, 'form');
+    if (form) {
+      indexedName = FormHandler.toIndex(context.name, context.indexes);
+      error = form.errors()[indexedName];
+      hasError = _.isObject(error) && _.has(error, 'type');
+    }
+
+    return hasError;
+  },
+
+  resolveType(context) {
+    // --- 1: return type as specified by template parameter
+    if(this.type) {
+      return this.type;
+    }
+
+    // --- 2: return type from resolved form
+    var form = MdlUi.Util2.resolveData(context, 'form');
+    if(form) {
+      return form.type(context.name);
+    }
+
+    return 'text';
+  },
+
+  resolveSchemaDefinition(context) {
+    var form = MdlUi.Util2.resolveData(context, 'form');
+    if(form) {
+      var simpleSchema = form.schema();
+      if(simpleSchema) {
+        return simpleSchema.schema(context.name);
+      }
+    }
+
+    return undefined;
+  },
+
+  resolveSchemaType(context) {
+    var schemaDefinition = MdlUi.Util2.resolveSchemaDefinition(context);
+    return schemaDefinition && schemaDefinition.type;
+  },
+
+  // ---
+  // http://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript
+  _toTitleCase(str) {
+    return str.replace(/\w\S*/g, function (txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  },
+
+  resolveData(context, name) {
+    context = context || this;
+
+    var val = context[name];
+    if (val === undefined) {
+      val = MdlUi.Util2._findDataInAncestor(name);
+    }
+
+    return val;
+  },
+
+  _resolveDataOrThrowError(context, name){
+    var data = MdlUi.Util2._resolveData(context, name);
+    if (!data) {
+      throw new Error(`Unable to resolve data [${name}]`);
+    }
+    return data;
+  },
+
+  _findDataInAncestor(name) {
+    var value = Template.instance().data[name];
+
+    if (value !== undefined) {
+      // current context has named data
+      return value;
+    }
+    var currentView = Template.instance().view.parentView;
+
+    while (currentView !== null) {
+      if (_.has(currentView, '_templateInstance') &&
+        _.has(currentView._templateInstance, 'data') &&
+        currentView._templateInstance.data !== null) {
+        value = currentView._templateInstance.data[name];
+        if (value !== undefined) {
+          return value;
+        }
+      }
+
+      if (_.has(currentView, 'originalParentView')) {
+        currentView = currentView.originalParentView;
+      } else {
+        currentView = currentView.parentView;
+      }
+    }
+
+    return undefined;
   }
 
 };

@@ -1,3 +1,4 @@
+// NOTE: this entire file is deprecated by form-handler
 
 Template.mdlUiForm.events({
     'submit form': function (event) {

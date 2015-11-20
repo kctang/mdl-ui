@@ -1,25 +1,25 @@
 Template.mdlUiTextarea.helpers({
     cell: MdlUi.Util.resolveCell,
     'class': function() {
-        return MdlUi.Util.resolveClass(this, 'mdl-textfield--floating-label');
+        return MdlUi.Util2.resolveClass(this, 'mdl-textfield--floating-label');
     },
     id: function () {
-        return MdlUi.Util.resolveId(this, 'MdlTextarea');
+        return MdlUi.Util2.resolveId(this, 'MdlTextarea');
     },
     name: function() {
-        return MdlUi.Util.resolveName(this);
+        return MdlUi.Util2.resolveName(this);
     },
     rows: function () {
-        return this.row || 3;
+        return this.rows || 5;
     },
     label: function () {
-        return MdlUi.Util.resolveLabel(this);
+        return MdlUi.Util2.resolveLabel(this);
     },
     value: function () {
-        return MdlUi.Util.resolveValue(this);
+        return MdlUi.Util2.resolveValue(this);
     },
     errorMessage: function () {
-        return MdlUi.Util.resolveErrorMessage(this);
+        return MdlUi.Util2.resolveErrorMessage(this);
     }
 });
 
