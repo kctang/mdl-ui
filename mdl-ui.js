@@ -644,6 +644,15 @@ MdlUi.Util2 = {
   // ---
   // http://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript
   _toTitleCase(str) {
+    // for nested schema field names, only take the last segment
+    var lastDot = str.lastIndexOf('.');
+    if(lastDot!==-1) {
+      str = str.substr(lastDot + 1);
+    }
+
+    // underscore to space with trim
+    str = str.replace(/_/g, ' ').trim();
+
     return str.replace(/\w\S*/g, function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
