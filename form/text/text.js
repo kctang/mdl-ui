@@ -3,7 +3,7 @@
 Template.mdlUiText.helpers({
     cell: MdlUi.Util.resolveCell,
     'class': function () {
-        return MdlUi.Util2.resolveClass(this, 'mdl-textfield--floating-label mdl-cell mdl-cell--top');
+      return MdlUi.Util2.resolveClass(this, 'mdl-textfield--floating-label mdl-cell mdl-cell--top');
     },
     id: function () {
         return MdlUi.Util2.resolveId(this, 'mdl-ui-text');
@@ -17,12 +17,12 @@ Template.mdlUiText.helpers({
     value: function () {
       var val = MdlUi.Util2.resolveValue(this);
 
-      switch (MdlUi.Util2.resolveSchemaType(this)) {
-        case 'Date':
-          return moment(val).format('ll');
-        default:
-          return val;
+      var schemaType = MdlUi.Util2.resolveSchemaType(this);
+      if(schemaType==='Date') {
+        val = moment(val).format('ll');
       }
+
+      return val;
     },
     errorMessage: function () {
         return MdlUi.Util2.resolveErrorMessage(this);

@@ -539,6 +539,11 @@ MdlUi.Util2 = {
       classes += ' is-invalid';
     }
 
+    var val = MdlUi.Util2.resolveValue(context);
+    if(_.isNumber(val)) {
+      classes += ' is-dirty';
+    }
+
     return classes;
   },
 
