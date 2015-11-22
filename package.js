@@ -67,8 +67,12 @@ Package.onUse(function (api) {
         'form/select/select.styl',
         'form/text/text.html',
         'form/text/text.js',
+        'form/text/text.styl',
         'form/textarea/textarea.html',
         'form/textarea/textarea.js',
+        'form/validation-errors/validation-errors.html',
+        'form/validation-errors/validation-errors.js',
+        'form/validation-errors/validation-errors.styl',
 
         'form/form.html',
         'form/form.js',

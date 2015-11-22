@@ -594,7 +594,7 @@ MdlUi.Util2 = {
   resolveErrorMessage(context) {
     var form = MdlUi.Util2.resolveData(context, 'form');
     if(form) {
-      form.errorMessage(name, context.indexes);
+      return form.errorMessage(context.name, context.indexes);
     }
   },
 
