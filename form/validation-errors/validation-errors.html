@@ -1,0 +1,11 @@
+<template name="mdlUiValidationErrors">
+  {{#if validationErrors}}
+    <div class="validation-errors mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col">
+      <ul>
+        {{#each validationErrors}}
+          <li>{{.}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+</template>
