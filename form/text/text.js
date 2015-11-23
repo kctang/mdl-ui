@@ -3,7 +3,13 @@
 Template.mdlUiText.helpers({
   cell: MdlUi.Util.resolveCell,
   'class': function () {
-    return MdlUi.Util2.resolveClass(this, 'mdl-textfield--floating-label mdl-cell mdl-cell--top');
+    var resolvedClass = MdlUi.Util2.resolveClass(this, 'mdl-textfield--floating-label mdl-cell mdl-cell--top');
+
+    if(this.disabled===true) {
+      resolvedClass += ' disabled';
+    }
+
+    return resolvedClass;
   },
   id: function () {
     return MdlUi.Util2.resolveId(this, 'mdl-ui-text');
