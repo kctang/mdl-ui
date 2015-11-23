@@ -43,7 +43,34 @@ Template.mdlUiSelect.helpers({
             options = mdlUiDefinition.select(mdlUiDefinition, MdlUi.Util2.resolveValue(this));
 
           } else if (_.isObject(mdlUiDefinition.select)) {
-            throw new Error('TODO: impl this');
+            return optionsFromModule(mdlUiDefinition, MdlUi.Util2.resolveValue(this));
+
+            function optionsFromModule(mdlDefinition, currentValue) {
+              'use strict';
+
+              var moduleName = mdlDefinition.select.moduleName;
+              var valueField = mdlDefinition.select.value;
+              var labelField = mdlDefinition.select.label;
+
+              // construct mongo query
+              var collection = Fuse.Module(moduleName).collection;
+              var fields = {};
+              fields[valueField] = 1;
+              fields[labelField] = 1;
+
+              // use
+              return collection.find({}, {
+                fields: fields,
+                sort: [labelField],
+                transform: function (doc) {
+                  // transform returned document to be suitable for display as select options
+                  return {
+                    value: doc[valueField],
+                    label: doc[labelField]
+                  };
+                }
+              });
+            }
 
           } else {
             throw new Error(`Unexpected mdlUi.select value in schema [${this.name}]`);
