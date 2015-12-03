@@ -1,8 +1,14 @@
 # mdl-ui
 
-WARNING: Still figuring out how this should work. You can have a look at the work in progress in the `fuse-demo` repository. 
+Reusable templates/layouts for Meteor based applications using Material Design Lite (MDL).
 
-The idea is to create a set of consistent, reusable templates/layouts for Meteor based applications using material design lite.
+# Install
+
+    meteor add kctang:mdl-ui
+
+## Demo
+
+To see this package used in a demo application, refer to [fuse-demo](https://github.com/kctang/fuse-demo).
 
 ## TODO
 
