@@ -2,38 +2,74 @@ var defaultOptions = {
   publicDrawer: 'mdlUiAppDrawerPublic',
   drawer: 'mdlUiAppDrawer',
 
+  menuItems: [
+    //{label: 'About', action: '/about'}
+  ],
+
   search: false,
   searchSessionName: 'search'
 
 };
 
+// TODO: change usage to resolveOption(...)
 var options = _.clone(defaultOptions);
+
+/**
+ * Resolve option from:
+ *
+ * 1. data context
+ * 2. default MdlUi options
+ *
+ * @param context
+ * @param name
+ * @returns {*}
+ */
+function resolveOption(context, name) {
+  // 1. resolve search from data context
+  var option = context && context[name];
+  if (_.isFunction(option)) {
+    option = option.call();
+  }
+
+  // 2. resolve search from MdlUi options
+  if (option === undefined) {
+    option = MdlUi.options[name];
+    if (_.isFunction(option)) {
+      option = option.call();
+    }
+  }
+
+  // 3. resolve from defaultOptions
+  if(option===undefined) {
+    option = defaultOptions[name];
+    if (_.isFunction(option)) {
+      option = option.call();
+    }
+  }
+
+  return option;
+}
 
 Template.mdlUiAppLayout.helpers({
   title() {
-    var o = MdlUi.options;
-    return _.isFunction(o.title) ? o.title() : o.title;
+    return resolveOption(this, 'title');
   },
 
   menuItems() {
-    return MdlUi.options.menuItems;
+    return resolveOption(this, 'menuItems');
   },
 
   search() {
-    // TODO: proper clone in template instance
-    var options = _.extend({}, _.pick(MdlUi.options, _.keys(defaultOptions)));
-    return options.search;
+    return resolveOption(this, 'search');
   },
 
   drawerTemplate() {
-    // populate options with customization from MdlUi.options
-    _.extend(options, _.pick(MdlUi.options, _.keys(defaultOptions)));
-
+    var name = 'publicDrawer';
     if (Meteor.user()) {
-      return options.drawer;
-    } else {
-      return options.publicDrawer;
+      name = 'drawer';
     }
+
+    return resolveOption(this, name);
   },
 
   searchValue() {
@@ -48,6 +84,6 @@ Template.mdlUiAppLayout.events({
 
   'keydown .search .mdl-textfield__input': _.throttle(function (e) {
     Session.set(options.searchSessionName, $(e.target).val());
-  }, 500)
+  }, 300)
 
 });

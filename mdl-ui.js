@@ -1,8 +1,5 @@
 var defaultOptions = {
-    title: 'Application',
-    menuItems: [
-        //{label: 'About', action: '/about'}
-    ]
+    title: 'Application'
 };
 
 var plugins = [];

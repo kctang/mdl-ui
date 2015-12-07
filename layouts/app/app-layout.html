@@ -8,20 +8,6 @@
                     <!-- Add spacer, to align navigation to the right -->
                     <div class="mdl-layout-spacer"></div>
 
-                    {{#if menuItems}}
-                        <nav class="mdl-navigation">
-                            <button id="app-layout--menu" class="mdl-button mdl-js-button mdl-button--icon">
-                                <i class="material-icons">more_vert</i>
-                            </button>
-                            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                                for="app-layout--menu">
-                                {{#each menuItems}}
-                                    <li class="mdl-menu__item">{{label}}</li>
-                                {{/each}}
-                            </ul>
-                        </nav>
-                    {{/if}}
-
                   {{#if search}}
                     <div class="search mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
@@ -35,6 +21,20 @@
                                id="fixed-header-drawer-exp">
                       </div>
                     </div>
+                  {{/if}}
+
+                  {{#if menuItems}}
+                    <nav class="mdl-navigation">
+                      <button id="app-layout--menu" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">more_vert</i>
+                      </button>
+                      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                          for="app-layout--menu">
+                        {{#each menuItems}}
+                          <li class="mdl-menu__item">{{label}}</li>
+                        {{/each}}
+                      </ul>
+                    </nav>
                   {{/if}}
 
                 </div>
