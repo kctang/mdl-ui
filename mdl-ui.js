@@ -175,6 +175,8 @@ MdlUi.Util = {
     },
 
     resolveCell(cell) {
+        'use strict';
+
         // if parameter not specified, get from this.cell
         if (arguments.length === 0) {
             if (this['SET_VALUE'] === 2) {
@@ -196,7 +198,18 @@ MdlUi.Util = {
                 } else {
                     throw new Meteor.Error('Incorrect value for attribute [cell]');
                 }
+            case 'boolean':
+              if(cell) {
+                // true
+                return 'mdl-cell';
+              } else {
+                // false
+                return '';
+              }
+            case 'undefined':
+              return 'mdl-cell';
             default:
+                console.warn('Incorrect value for attribute [cell]');
                 return 'mdl-cell';
         }
     },

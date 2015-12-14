@@ -3,7 +3,7 @@
 Template.mdlUiText.helpers({
   cell: MdlUi.Util.resolveCell,
   'class': function () {
-    var resolvedClass = MdlUi.Util2.resolveClass(this, 'mdl-textfield--floating-label mdl-cell mdl-cell--top');
+    var resolvedClass = MdlUi.Util2.resolveClass(this, 'mdl-textfield--floating-label');
 
     if(this.disabled===true) {
       resolvedClass += ' disabled';
