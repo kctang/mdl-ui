@@ -626,8 +626,8 @@ MdlUi.Util2 = {
 
   resolveType(context) {
     // --- 1: return type as specified by template parameter
-    if(this.type) {
-      return this.type;
+    if(context.type) {
+      return context.type;
     }
 
     // --- 2: return type from resolved form
