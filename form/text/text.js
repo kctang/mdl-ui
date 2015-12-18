@@ -39,6 +39,9 @@ Template.mdlUiText.helpers({
   type: function () {
     return MdlUi.Util2.resolveType(this);
   },
+  pattern() {
+    return this.pattern;
+  },
   extraInputClass() {
     var extraInputClass = '';
 
