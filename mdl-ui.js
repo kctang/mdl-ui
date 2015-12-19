@@ -52,6 +52,9 @@ MdlUi.preInit();
 
 // ----- util
 
+/**
+ * @deprecated
+ */
 MdlUi.Util = {
     resolveName(context) {
         return MdlUi.Util.toIndex(context.name, context.indexes);
@@ -549,10 +552,8 @@ MdlUi.Util2 = {
       classes += ' is-invalid';
     }
 
-    var val = MdlUi.Util2.resolveValue(context);
-    if(_.isNumber(val)) {
-      classes += ' is-dirty';
-    }
+    // TODO: to check if this is really needed?!
+    classes += ' is-dirty';
 
     return classes;
   },
@@ -609,19 +610,7 @@ MdlUi.Util2 = {
   },
 
   hasError(context) {
-    // TODO: replace with resolveErrorMessage in Form class?
-    var hasError = false;
-    var indexedName;
-    var error;
-
-    var form = MdlUi.Util2.resolveData(context, 'form');
-    if (form) {
-      indexedName = FormHandler.toIndex(context.name, context.indexes);
-      error = form.errors()[indexedName];
-      hasError = _.isObject(error) && _.has(error, 'type');
-    }
-
-    return hasError;
+    return MdlUi.Util2.resolveErrorMessage(context) ? true : false;
   },
 
   resolveType(context) {
