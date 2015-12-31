@@ -79,7 +79,11 @@ Template.mdlUiAppLayout.helpers({
 
 Template.mdlUiAppLayout.events({
   'click .mdl-menu__item'() {
-    Router.go(this.action);
+    if(_.isFunction(this.action)) {
+      this.action();
+    } else {
+      Router.go(this.action);
+    }
   },
 
   'keydown .search .mdl-textfield__input': _.throttle(function (e) {
