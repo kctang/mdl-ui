@@ -29,7 +29,7 @@ Template.mdlUiSelect.helpers({
       // --- 2: get options for field from schema definition's "mdlUi" extension
       // --- 2.1: array of objects with "value" and "label" as keys
       // --- 2.2: function that returns array of objects with "value" and "label" as keys
-      // --- 2.3: TODO: retrieve options from module
+      // --- 2.3: retrieve options from module
       var options = undefined;
       var schemaDefinition = MdlUi.Util2.resolveSchemaDefinition(this);
       if (schemaDefinition) {
@@ -37,12 +37,15 @@ Template.mdlUiSelect.helpers({
 
         if(mdlUiDefinition && mdlUiDefinition.select) {
           if (_.isArray(mdlUiDefinition.select)) {
+            // --- 2.1
             options = mdlUiDefinition.select;
 
           } else if (_.isFunction(mdlUiDefinition.select)) {
+            // --- 2.2
             options = mdlUiDefinition.select(mdlUiDefinition, MdlUi.Util2.resolveValue(this));
 
           } else if (_.isObject(mdlUiDefinition.select)) {
+            // --- 2.3
             return optionsFromModule(mdlUiDefinition, MdlUi.Util2.resolveValue(this));
 
             function optionsFromModule(mdlDefinition, currentValue) {
