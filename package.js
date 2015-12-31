@@ -1,19 +1,19 @@
 Package.describe({
     name: 'kctang:mdl-ui',
-    version: '0.0.8',
+    version: '0.0.9',
     summary: 'Reusable templates/layouts for Meteor based applications using Material Design Lite (MDL)',
     git: 'https://github.com/kctang/mdl-ui',
     documentation: 'README.md'
 });
 
 Package.onUse(function (api) {
-    api.versionsFrom('1.2.0.1');
+    api.versionsFrom('1.2.1');
     api.use([
         'ecmascript',
         'meteor-base',
         // http://stackoverflow.com/questions/32813802/meteor-exception-in-template-helper-referenceerror-match-is-not-defined
         'check',
-        'aldeed:simple-schema@1.3.3',
+        'aldeed:simple-schema@1.5.3',
         'momentjs:moment@2.10.6'
     ]);
     api.use([
