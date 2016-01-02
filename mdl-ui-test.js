@@ -1,3 +1,5 @@
+var debug = false;
+
 MdlUi.Util.Test = {
     setValue: function () {
         _.each({
@@ -225,8 +227,11 @@ MdlUi.Util.Test = {
         });
     }
 };
-_.each(MdlUi.Util.Test, function (test, name) {
+
+if(debug) {
+  _.each(MdlUi.Util.Test, function (test, name) {
     console.groupCollapsed('Running nano test [' + name + ']');
     test();
     console.groupEnd();
-});
+  });
+}
