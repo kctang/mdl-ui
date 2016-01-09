@@ -1,6 +1,7 @@
 'use strict';
 
 Template.mdlUiRadio.helpers({
+  cell: MdlUi.Util.resolveCell,
   'class'() {
     return this['class'];
   },
