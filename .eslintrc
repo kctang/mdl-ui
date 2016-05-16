@@ -1,0 +1,17 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  // TODO: not a good idea to overrider airbnb's rules. fix these once experiments are done
+  "rules": {
+    "react/prop-types": "off",
+    "no-console": "off",
+  }
+}
