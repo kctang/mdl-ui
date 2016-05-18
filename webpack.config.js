@@ -20,22 +20,26 @@ if (isProd) {
       compress: {
         warnings: false,
       },
-    })
-    // don't think there's dedupe helps here, so let's remove for now
-    // new webpack.optimize.DedupePlugin()
+    }),
+    new webpack.optimize.DedupePlugin()
   );
 }
 
 module.exports = {
   entry: {
-    'mdl-ui': ['./src/index.js'],
-    'mdl-icons': ['./src/assets/material-icons.css'],
-    'mdl-fonts': ['./src/assets/roboto/roboto.css'],
-},
-  output: {
-    path: './dist',
-    filename: '[name].js',
+    'mdl-ui': ['./src/index.js']
   },
+  output: {
+    path: './lib',
+    filename: '[name].js',
+    libraryTarget: 'amd',
+  },
+  externals: [
+    'underscore',
+    'react',
+    'react-mdl',
+    'nuka-carousel',
+  ],
   module: {
     loaders: [
       {
@@ -53,13 +57,13 @@ module.exports = {
       },
       {
         test: /\.png/,
-        // loader: 'url?limit=1111111024&minetype=image/png&name=png/[name]-[hash].[ext]',
-        loader: 'url?limit=1024&minetype=image/png&name=assets/[name]-[hash].[ext]',
+        loader: 'url?limit=1048576&minetype=image/png&name=png/[name]-[hash].[ext]',
+        // loader: 'url?limit=1024&minetype=image/png&name=assets/[name]-[hash].[ext]',
       },
       {
         test: /\.woff2$/,
-        // loader: 'url?limit=111111024&mimetype=application/font-woff2&name=fonts/[name]-[hash].[ext]',
-        loader: 'url?limit=1024&mimetype=application/font-woff2&name=assets/[name]-[hash].[ext]',
+        loader: 'url?limit=1048576&mimetype=application/font-woff2&name=fonts/[name]-[hash].[ext]',
+        // loader: 'url?limit=1024&mimetype=application/font-woff2&name=assets/[name]-[hash].[ext]',
       },
     ],
   },

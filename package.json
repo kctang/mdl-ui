@@ -2,22 +2,7 @@
   "name": "mdl-ui",
   "version": "0.1.0",
   "description": "",
-  "main": "dist/mdl-ui.js",
-  "scripts": {
-    "build": "npm run clean && NODE_ENV=production node_modules/.bin/webpack --progress",
-    "build-debug": "npm run clean && node_modules/.bin/webpack --progress",
-    "clean": "rm -fr dist",
-    "compile": "babel -d dist/ src/",
-    "compile-watch": "npm run compile -- --watch --watch-extensions js",
-    "coverage": "babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- tests/**/*.js",
-    "coverage-open": "npm run coverage && open coverage/lcov-report/src/index.html",
-    "docs": "esdoc -c esdoc.json",
-    "lint": "eslint ./src ./tests --ext .js",
-    "storybook": "start-storybook -p 9001 -s ./dist",
-    "test": "npm run lint && npm run test-only",
-    "test-only": "mocha tests/**/*.js --compilers js:babel-core/register",
-    "test-watch": "npm run test-only -- --watch --watch-extensions js"
-  },
+  "main": "lib/mdl-ui.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kctang/mdl-ui.git"
@@ -66,11 +51,25 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.0"
   },
-  "dependencies": {
+  "peerDependencies": {
     "nuka-carousel": "^1.2.0",
     "react": "^15.0.2",
-    "react-dom": "^15.0.2",
     "react-mdl": "^1.5.4",
     "underscore": "^1.8.3"
+  },
+  "scripts": {
+    "build": "npm run clean && NODE_ENV=production node_modules/.bin/webpack --progress",
+    "build-debug": "npm run clean && node_modules/.bin/webpack --progress",
+    "clean": "rm -fr lib",
+    "compile": "babel -d lib/ src/",
+    "compile-watch": "npm run compile -- --watch --watch-extensions js",
+    "coverage": "babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- tests/**/*.js",
+    "coverage-open": "npm run coverage && open coverage/lcov-report/src/index.html",
+    "docs": "esdoc -c esdoc.json",
+    "lint": "eslint ./src ./tests --ext .js",
+    "storybook": "start-storybook -p 9001 -s ./lib",
+    "test": "npm run lint && npm run test-only",
+    "test-only": "mocha tests/**/*.js --compilers js:babel-core/register",
+    "test-watch": "npm run test-only -- --watch --watch-extensions js"
   }
 }

@@ -1,3 +1,5 @@
+import './assets/material-icons.css';
+import './assets/roboto/roboto.css';
 import './assets/mdl-ui.css';
 
 export { default as util } from './util';

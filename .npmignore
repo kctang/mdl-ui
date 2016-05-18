@@ -1,2 +1,4 @@
-src
 tests
+.idea
+.storybook
+npm-debug.log
