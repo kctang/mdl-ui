@@ -67,7 +67,8 @@
     "coverage-open": "npm run coverage && open coverage/lcov-report/src/index.html",
     "docs": "esdoc -c esdoc.json",
     "lint": "eslint ./src ./tests --ext .js",
-    "storybook": "start-storybook -p 9001 -s ./lib",
+    "storybook": "start-storybook -p 9001",
+    "storybook-lib": "start-storybook -p 9001 -s ./lib",
     "test": "npm run lint && npm run test-only",
     "test-only": "mocha tests/**/*.js --compilers js:babel-core/register",
     "test-watch": "npm run test-only -- --watch --watch-extensions js"

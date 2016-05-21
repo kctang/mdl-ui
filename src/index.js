@@ -8,6 +8,8 @@ export { default as Hello } from './Hello';
 
 export { default as App } from './App';
 
+export { default as Dialog } from './Dialog';
+
 export { default as Onboard } from './Onboard';
 
 export { default as Snackbar } from './Snackbar';
