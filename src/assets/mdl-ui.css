@@ -12,7 +12,7 @@ html, body {
     -webkit-user-select: none;
 }
 
-body, #root {
+body, #root, #react-root, [data-reactroot] {
     height: 100%;
 }
 

@@ -13,6 +13,9 @@ const AppDrawer = ({
   avatarActions = [],
   onClickAvatarAction,
 }) => {
+  const clickAvatarAction = onClickAvatarAction;
+  const clickLink = onClickLink;
+
   const css = {
     avatarDiv: {
       display: 'flex',
@@ -38,7 +41,7 @@ const AppDrawer = ({
     },
   };
 
-  if (links && links.length > 0) {
+  if (avatarName || (links && links.length > 0)) {
     const Title = (
       <div style={css.avatarDiv}>
         <img src={avatar} style={css.avatar} alt="Avatar" />
@@ -52,9 +55,7 @@ const AppDrawer = ({
             <Mdl.IconButton name="arrow_drop_down" id="app-drawer-menu" style={css.icon} />
             <Mdl.Menu target="app-drawer-menu" align="right">
               {avatarActions.map(avatarAction =>
-                // eslint-disable-next-line
-                <Mdl.MenuItem
-                  onClick={onClickAvatarAction.bind(this, avatarAction.id)}>{avatarAction.text}</Mdl.MenuItem>
+                <Mdl.MenuItem onClick={() => clickAvatarAction(avatarAction.id)}>{avatarAction.text}</Mdl.MenuItem>
               )}
             </Mdl.Menu>
           </div>
@@ -64,13 +65,13 @@ const AppDrawer = ({
 
     return (
       <Mdl.Drawer title={Title}>
-
-        <Mdl.Navigation>
-          {links.map((link, idx) => (
-            // eslint-disable-next-line
-            <a key={idx} onClick={onClickLink.bind(this, link.id)}>{link.text}</a>
-          ))}
-        </Mdl.Navigation>
+        {links && links.length > 0 && (
+          <Mdl.Navigation>
+            {links.map((link, idx) => (
+              <a key={idx} onClick={() => clickLink(link.id)}>{link.text}</a>
+            ))}
+          </Mdl.Navigation>
+        )}
       </Mdl.Drawer>
     );
   }

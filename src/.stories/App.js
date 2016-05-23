@@ -90,11 +90,11 @@ storiesOf('App', module)
     const props = {
       title: 'App',
 
-      menuItems: ['item 1', 'item 2'],
-      onClickMenuItem: action('onClickMenuItem'),
-
       search: true,
       onSearch: action('onSearch'),
+
+      menuItems: ['item 1', 'item 2'],
+      onClickMenuItem: action('onClickMenuItem'),
 
       links: [
         { id: 1, text: 'link 1' },
@@ -102,6 +102,16 @@ storiesOf('App', module)
         { id: 3, text: 'link 3' },
       ],
       onClickLink: action('onClickLink'),
+
+      avatar,
+      avatarName: 'bob',
+      avatarTitle: 'is alive!',
+      avatarActions: [
+        { id: 'login', text: 'Login' },
+        { id: 'profile', text: 'Profile' },
+        { id: 'logout', text: 'Logout' },
+      ],
+      onClickAvatarAction: action('onClickAvatarAction'),
 
       fab: 'add',
       onClickFab: action('onClickFab'),

@@ -27,19 +27,21 @@ if (isProd) {
 
 module.exports = {
   entry: {
-    'mdl-ui': ['./src/index.js']
+    'mdl-ui': ['./src/index.js'],
   },
   output: {
     path: './lib',
     filename: '[name].js',
-    libraryTarget: 'amd',
+    // libraryTarget: 'amd',
+    libraryTarget: 'umd',
   },
   externals: [
-    'underscore',
     'react',
+    'react-dom',
     'react-mdl',
     'nuka-carousel',
-  ],
+    'underscore',
+],
   module: {
     loaders: [
       {
@@ -58,12 +60,12 @@ module.exports = {
       {
         test: /\.png/,
         loader: 'url?limit=1048576&minetype=image/png&name=png/[name]-[hash].[ext]',
-        // loader: 'url?limit=1024&minetype=image/png&name=assets/[name]-[hash].[ext]',
+        // loader: 'url?limit=64&minetype=image/png&name=assets/[name]-[hash].[ext]',
       },
       {
         test: /\.woff2$/,
         loader: 'url?limit=1048576&mimetype=application/font-woff2&name=fonts/[name]-[hash].[ext]',
-        // loader: 'url?limit=1024&mimetype=application/font-woff2&name=assets/[name]-[hash].[ext]',
+        // loader: 'url?limit=64&mimetype=application/font-woff2&name=assets/[name]-[hash].[ext]',
       },
     ],
   },

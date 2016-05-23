@@ -115,11 +115,11 @@ export default ({
     },
   };
 
-  return <div style={css.page}>
+  return (<div style={css.page}>
     <Carousel decorators={CarouselDecorators}>
-      {slides.map(Slide => (
-        <div style={css.slide}>{Slide}</div>
+      {slides.map((Slide, index) => (
+        <div key={index} style={css.slide}>{Slide}</div>
       ))}
     </Carousel>
-  </div>;
+  </div>);
 };
