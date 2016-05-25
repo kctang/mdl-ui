@@ -67,6 +67,7 @@
     "coverage-open": "npm run coverage && open coverage/lcov-report/src/index.html",
     "docs": "esdoc -c esdoc.json",
     "lint": "eslint ./src ./tests --ext .js",
+    "pack": "npm run build && npm pack",
     "storybook": "start-storybook -p 9001",
     "storybook-lib": "start-storybook -p 9001 -s ./lib",
     "test": "npm run lint && npm run test-only",
