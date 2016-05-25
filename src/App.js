@@ -4,6 +4,30 @@ import * as Mdl from 'react-mdl';
 import defaultAvatar from './assets/avatar.png';
 import Snackbar from './Snackbar';
 
+// TODO: incomplete solution - keyboard & drag mouse/touch still activates drawer!
+class BackDrawer extends React.Component {
+  componentDidMount() {
+    const { onClickBack } = this.props;
+    setTimeout(() => {
+      document.querySelector('i.material-icons').textContent = 'arrow_back';
+      const handleBack = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        onClickBack();
+      };
+      const button = document.querySelector('header > .mdl-layout__drawer-button');
+      button.addEventListener('click', handleBack, true);
+    }, 0);
+  }
+
+  render() {
+    return (
+      <div ref="drawerBack" className="mdl-layout__drawer">
+      </div>
+    );
+  }
+}
+
 const AppDrawer = ({
   links,
   onClickLink,
@@ -54,8 +78,8 @@ const AppDrawer = ({
           <div style={{ position: 'relative' }}>
             <Mdl.IconButton name="arrow_drop_down" id="app-drawer-menu" style={css.icon} />
             <Mdl.Menu target="app-drawer-menu" align="right">
-              {avatarActions.map(avatarAction =>
-                <Mdl.MenuItem onClick={() => clickAvatarAction(avatarAction.id)}>{avatarAction.text}</Mdl.MenuItem>
+              {avatarActions.map((avatarAction, index) =>
+                <Mdl.MenuItem key={index} onClick={() => clickAvatarAction(avatarAction.id)}>{avatarAction.text}</Mdl.MenuItem>
               )}
             </Mdl.Menu>
           </div>
@@ -142,6 +166,8 @@ export default ({
 
   menuItems, onClickMenuItem,
 
+  onClickBack,
+
   search, onSearch,
 
   links, onClickLink,
@@ -167,11 +193,12 @@ export default ({
         <AppSearch active={search} onSearch={onSearch} />
         <AppMenu {...{ menuItems, onClickMenuItem }} />
       </Mdl.Header>
-      <AppDrawer
-        {...{
-          links, onClickLink, avatar, avatarName, avatarTitle, avatarActions, onClickAvatarAction,
-        }}
-      />
+      {onClickBack ?
+        <BackDrawer {...{ onClickBack }} /> :
+        <AppDrawer {...{
+          links, onClickLink, avatar, avatarName, avatarTitle, avatarActions, onClickAvatarAction
+        }} />
+      }
       <Mdl.Content>
         {content}
         {fab && <Mdl.FABButton colored ripple style={fabStyle} onClick={onClickFab}>

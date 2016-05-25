@@ -37,6 +37,13 @@ storiesOf('App', module)
 
     return <App {...props} />;
   })
+  .add('back', () => {
+    const props = {
+      onClickBack: action('onClickBack'),
+    };
+
+    return <App {...props} />;
+  })
   .add('content', () => <App content="content" />)
   .add('fab', () => {
     const props = {
