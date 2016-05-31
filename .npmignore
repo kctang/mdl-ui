@@ -1,4 +1,3 @@
-tests
 .idea
-.storybook
 npm-debug.log
+mdl-ui-*.tgz

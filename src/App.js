@@ -69,7 +69,7 @@ const AppDrawer = ({
     const Title = (
       <div style={css.avatarDiv}>
         <img src={avatar} style={css.avatar} alt="Avatar" />
-        <div>
+        <div style={{ marginLeft: 8}}>
           <div style={css.name}>{avatarName}</div>
           <div style={css.email}>{avatarTitle}</div>
         </div>
