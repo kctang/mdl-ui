@@ -1,7 +1,5 @@
-<!--
 [![Build Status](https://travis-ci.org/kctang/mdl-ui.svg)](https://travis-ci.org/kctang/mdl-ui)
 [![Dependency Status](https://gemnasium.com/kctang/mdl-ui.svg)](https://gemnasium.com/kctang/mdl-ui)
- -->
 # mdl-ui
 
 React based [stateless functional components](http://tylermcginnis.com/functional-components-vs-stateless-functional-components-vs-stateless-components/) using Material Design Lite (MDL).
