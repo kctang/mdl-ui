@@ -73,6 +73,8 @@
     "test": "npm run test-only",
     "test-only": "mocha tests/**/*.js --compilers js:babel-core/register",
     "test-watch": "npm run test-only -- --watch --watch-extensions js",
-    "ipd": "npm install nuka-carousel react react-mdl underscore"
+    "install-peer": "npm install nuka-carousel react react-mdl underscore",
+    "publish-prepare": "npm set registry https://registry.npmjs.org",
+    "publish-release": "npm run build && npm publish && npm version $npm_package_version"
   }
 }
