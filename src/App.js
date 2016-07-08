@@ -150,9 +150,12 @@ const AppMenu = ({
       <div style={{ position: 'relative' }}>
         <Mdl.IconButton name="more_vert" id="demo-menu-lower-right" />
         <Mdl.Menu target="demo-menu-lower-right" align="right">
-          {menuItems.map((item, idx) =>
+          {menuItems.map(({id, text, icon}, idx) =>
             // eslint-disable-next-line
-            <Mdl.MenuItem key={idx} onClick={onClickMenuItem.bind(this, item)}>{item}</Mdl.MenuItem>
+            <Mdl.MenuItem key={idx} onClick={onClickMenuItem.bind(this, id)} style={{display:'flex'}}>
+              {icon && <Mdl.Icon name={icon} style={{alignSelf: 'center', paddingRight: 8}} />}
+              {text}
+            </Mdl.MenuItem>
           )}
         </Mdl.Menu>
       </div>

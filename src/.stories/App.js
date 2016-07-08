@@ -13,7 +13,11 @@ storiesOf('App', module)
   })
   .add('menuItems, onClickMenuItem', () => {
     const props = {
-      menuItems: ['item 1', 'item 2'],
+      menuItems: [
+        { id: 22, text: 'Add', icon: 'add' },
+        { id: 33, text: 'Clear', icon: 'clear' },
+        { id: 44, text: 'Item without icon' },
+      ],
       onClickMenuItem: action('onClickMenuItem')
     };
     return <App {...props} />;
@@ -82,7 +86,7 @@ storiesOf('App', module)
       snackbarAction: 'Redo',
       onSnackbarAction: action('Clicked "Redo" action')
     };
-    
+
     return <App {...props} />;
   })
   .add('toast', () => {
@@ -101,7 +105,10 @@ storiesOf('App', module)
       search: true,
       onSearch: action('onSearch'),
 
-      menuItems: ['item 1', 'item 2'],
+      menuItems: [
+        { id: 33, text: 'item 1' },
+        { id: 44, text: 'item 2' },
+      ],
       onClickMenuItem: action('onClickMenuItem'),
 
       links: [
